@@ -1,0 +1,46 @@
+/* Estilo para eventos como tarjetas */
+.custom-event {
+    background-color: #00f2ff !important;
+    color: #000 !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 4px 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0, 242, 255, 0.3);
+}
+
+/* Grilla sin bordes marcados */
+.fc-scrollgrid {
+    border: none !important;
+}
+
+/* Celdas del día con fondo limpio y suave */
+.fc-daygrid-day {
+    background-color: #1c1c3a;
+    border-radius: 8px;
+    margin: 4px;
+    box-shadow: 0 0 6px rgba(0, 242, 255, 0.1);
+}
+
+/* Texto de horas (formato 12h) */
+.fc-timegrid-slot-label {
+    color: #aaa;
+    font-weight: 500;
+}
+
+/* Mejora visual del calendario general */
+.fc {
+    background-color: transparent;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* Eliminar las líneas punteadas de la vista semanal */
+.fc-timegrid-slot {
+    border-bottom: none !important;
+}
+
+.fc-timegrid-slot {
+    background-color: transparent !important;
+    border-bottom: none !important;
+}

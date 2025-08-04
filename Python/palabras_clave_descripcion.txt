@@ -1,0 +1,420 @@
+capacitación
+Capacitacion Estudiantes Online
+Capaction Estudiantes PVC
+Capacitacion Estudiantes Presencial/Hibrida
+aniversario
+cumpleaños
+reunión
+cita
+consulta
+entrevista
+junta
+charla
+presentación
+conferencia
+fiesta
+evento
+clase
+taller
+viaje
+examen
+evaluación
+almuerzo
+cena
+desayuno
+sesión
+entrenamiento
+misa
+boda
+graduación
+vacaciones
+retiro
+ceremonia
+revisión
+encuentro
+reunión 
+Familia
+familiar
+terapia
+control médico
+visita
+campamento
+reunión de equipo
+reunión de proyecto
+doctor
+médico
+odontólogo
+psicólogo
+nutricionista
+cirugía
+operación
+celebración
+partido
+evento deportivo
+torneo
+clínica
+webinar
+competencia
+exposición
+demostración
+apertura
+cierre
+baile
+reunión virtual
+paseo
+caminata
+picnic
+excursión
+show
+espectáculo
+festival
+ensayo
+concierto
+maestro
+profesor
+tutor
+alumno
+estudiante
+ingeniero
+arquitecto
+diseñador
+programador
+técnico
+fotógrafo
+camarógrafo
+periodista
+escritor
+editor
+administrador
+gerente
+director
+supervisor
+juez
+abogado
+contable
+banquero
+vendedor
+recepcionista
+cliente
+visitante
+conferencista
+organizador
+invitado
+anfitrión
+paciente
+músico
+artista
+influencer
+emprendedor
+perro
+gato
+pez
+loro
+conejo
+tortuga
+caballo
+vaca
+oveja
+cabra
+gallina
+pato
+cerdo
+hamster
+cuy
+iguana
+serpiente
+rana
+león
+tigre
+oso
+mono
+zorro
+ardilla
+delfín
+ballena
+teléfono
+computadora
+laptop
+cargador
+mochila
+cuaderno
+lápiz
+bolígrafo
+libreta
+cámara
+tablet
+silla
+mesa
+coche
+bicicleta
+moto
+reloj
+televisor
+ventilador
+radio
+microondas
+nevera
+estufa
+horno
+vaso
+taza
+plato
+cuchara
+tenedor
+cuchillo
+cama
+almohada
+espejo
+puerta
+ventana
+cortina
+libro
+periódico
+documento
+tarjeta
+billete
+cartera
+llaves
+hospital
+clínica
+escuela
+universidad
+oficina
+restaurante
+parque
+iglesia
+templo
+gimnasio
+supermercado
+mercado
+centro comercial
+cine
+teatro
+museo
+biblioteca
+estadio
+hotel
+casa
+departamento
+apartamento
+sala
+cocina
+baño
+jardín
+terraza
+balcón
+playa
+montaña
+lago
+río
+zoológico
+aeropuerto
+terminal
+estación
+carretera
+calle
+barrio
+ciudad
+aeropuerto
+aquí
+almohada
+almuerzo
+amigo
+juego con amigo
+Juego con amigos
+platica con amigos
+amiga
+anfitrión
+aniversario
+antes
+apartamento
+aplicación
+apertura
+arquitecto
+arte
+artista
+atletismo
+autobús
+avión
+baile
+balcón
+baloncesto
+banco
+banquero
+baño
+barco
+barrio
+base de datos
+bicicleta
+bicicleta eléctrica
+biblioteca
+billete
+blanco
+boda
+bolígrafo
+boxeo
+cabra
+café
+cajero
+calle
+cama
+caminata
+campamento
+camión
+cámara
+casa
+celeste
+celebración
+cerdo
+ceremonia
+charla
+cine
+cirugía
+clase
+clínica
+color
+comedor
+comedor escolar
+comedor social
+comida
+computadora
+concierto
+conferencia
+conferencista
+concurso
+conejo
+conexión
+conexión wifi
+consulta
+consulta médica
+contenedor
+contraseña
+control médico
+corte
+cortina
+cuchara
+cuchillo
+cumpleaños
+cuy
+cámara
+cómodo
+cómplice
+cómodo
+cómodo
+delfín
+departamento
+deporte
+deportes
+departamento
+departamento escolar
+departamento técnico
+departamento universitario
+departamento virtual
+departamento médico
+departamento jurídico
+departamento financiero
+departamento de ventas
+departamento de compras
+departamento de marketing
+departamento de recursos humanos
+departamento de ingeniería
+departamento de informática
+departamento de seguridad
+departamento de logística
+departamento de producción
+departamento de investigación
+departamento de desarrollo
+departamento de atención al cliente
+departamento de soporte
+departamento de mantenimiento
+departamento de limpieza
+departamento de transporte
+departamento de calidad
+departamento de auditoría
+departamento de planificación
+departamento de operaciones
+departamento de gestión
+departamento de control
+departamento de administración
+departamento de comunicación
+departamento de relaciones públicas
+departamento de relaciones internacionales
+departamento de relaciones laborales
+departamento de relaciones institucionales
+departamento de relaciones comunitarias
+departamento de relaciones con proveedores
+departamento de relaciones con clientes
+departamento de relaciones con inversores
+departamento de relaciones con medios
+departamento de relaciones con la comunidad
+departamento de relaciones con el gobierno
+departamento de relaciones con socios
+departamento de relaciones con empleados
+departamento de relaciones con accionistas
+departamento de relaciones con sindicatos
+departamento de relaciones con ONG
+departamento de relaciones con asociaciones
+departamento de relaciones con fundaciones
+departamento de relaciones con universidades
+departamento de relaciones con escuelas
+departamento de relaciones con hospitales
+departamento de relaciones con clínicas
+departamento de relaciones con centros de salud
+departamento de relaciones con centros educativos
+departamento de relaciones con centros culturales
+departamento de relaciones con centros deportivos
+departamento de relaciones con centros recreativos
+departamento de relaciones con centros turísticos
+departamento de relaciones con centros comerciales
+departamento de relaciones con centros financieros
+departamento de relaciones con centros empresariales
+departamento de relaciones con centros industriales
+departamento de relaciones con centros tecnológicos
+departamento de relaciones con centros de investigación
+departamento de relaciones con centros de desarrollo
+departamento de relaciones con centros de innovación
+departamento de relaciones con centros de formación
+departamento de relaciones con centros de capacitación
+departamento de relaciones con centros de entrenamiento
+departamento de relaciones con centros de adiestramiento
+departamento de relaciones con centros de aprendizaje
+departamento de relaciones con centros de enseñanza
+departamento de relaciones con centros de educación
+departamento de relaciones con centros educativos privados
+departamento de relaciones con centros educativos públicos
+departamento de relaciones con centros educativos concertados
+departamento de relaciones con centros educativos internacionales
+departamento de relaciones con centros educativos nacionales
+departamento de relaciones con centros educativos regionales
+departamento de relaciones con centros educativos locales
+departamento de relaciones con centros educativos comunitarios
+departamento de relaciones con centros educativos rurales
+departamento de relaciones con centros educativos urbanos
+departamento de relaciones con centros educativos suburbanos
+departamento de relaciones con centros educativos periurbanos
+departamento de relaciones con centros educativos metropolitanos
+departamento de relaciones con centros educativos provinciales
+departamento de relaciones con centros educativos departamentales
+departamento de relaciones con centros educativos distritales
+departamento de relaciones con centros educativos municipales
+departamento de relaciones con centros educativos parroquiales
+departamento de relaciones con centros educativos comunitarios rurales
+departamento de relaciones con centros educativos comunitarios urbanos
+departamento de relaciones con centros educativos comunitarios periurbanos
+departamento de relaciones con centros educativos comunitarios metropolitanos
+departamento de relaciones con centros educativos comunitarios provinciales
+departamento de relaciones con centros educativos comunitarios departamentales
+departamento de relaciones con centros educativos comunitarios distritales
+departamento de relaciones con centros educativos comunitarios municipales
+departamento de relaciones con centros educativos comunitarios parroquiales
+departamento de relaciones con centros educativos comunitarios rurales y urbanos
+departamento de relaciones con centros educativos comunitarios urbanos y rurales
+departamento de relaciones con centros educativos comunitarios periurbanos y rurales
+departamento de relaciones con centros educativos comunitarios metropolitanos y rurales
+departamento de relaciones con centros educativos comunitarios provinciales y rurales
+departamento de relaciones con centros educativos comunitarios departamentales y rurales
+departamento de relaciones con centros educativos comunitarios distritales y rurales
+departamento de relaciones con centros educativos comunitarios municipales y rurales
+departamento de relaciones con centros educativos comunitarios parroquiales y rurales
+departamento de relaciones con centros educativos comunitarios rurales y urbanos
+departamento de relaciones con centros educativos comunitarios urbanos y rurales
