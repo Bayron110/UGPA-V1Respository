@@ -1,5 +1,3 @@
-// App.tsx
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Chat from "../Screens/Chat";
 import Historial from "../Screens/Historial";

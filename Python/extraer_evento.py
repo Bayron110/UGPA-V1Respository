@@ -23,57 +23,45 @@ MESES = cargar_palabras_clave(os.path.join(CARPETA_CLAVES, "palabras_clave_fecha
 # === Detección de evento de día completo ===
 def es_evento_dia_completo(texto: str) -> bool:
     texto_lower = texto.lower()
-    return any(frase in texto_lower for frase in ["todo el día", "durante todo el día", "día completo"])
+    return any(frase in texto_lower for frase in ["todo el día", "durante todo el día", "día completo", "todo el dia"])
 
 # === Extracción del nombre del evento ===
 def extraer_nombre_evento(texto: str, personas: list) -> str:
     texto_lower = texto.lower()
 
-    # 1. Buscar tipo y nombre entre comillas
-    match_comillas = re.search(r"(evento|reunión|cita|fiesta|capacitación|taller)\s+[\"'](.+?)[\"']", texto_lower)
+    # Buscar tipo y nombre entre comillas
+    match_comillas = re.search(r"(evento|reunión|cita|fiesta|capacitación|taller|charla)\s+[\"'](.+?)[\"']", texto_lower)
     if match_comillas:
         tipo, nombre = match_comillas.groups()
         return f"{tipo.capitalize()}: {nombre.strip().capitalize()}"
 
-    # 2. Detectar frases compuestas más amplias
+    # Buscar frases compuestas amplias
     match_amplio = re.search(
-        r"(capacitaci[oó]n(?: de| sobre)?\s+\w.+?|taller(?: de)?\s+\w.+?|fiesta de\s+\w+|reuni[oó]n con\s+\w+)",
+        r"(capacitaci[oó]n(?: de| sobre)?\s+\w.+?|taller(?: de)?\s+\w.+?|fiesta de\s+\w+|reuni[oó]n con\s+\w+|charla sobre\s+\w.+?)",
         texto_lower
     )
     if match_amplio:
         return match_amplio.group(1).strip().capitalize()
 
-    # 3. Elegir palabra clave más larga y relevante del diccionario
-    mejor_opcion = ""
+    # Buscar palabra clave del diccionario
     for palabra in sorted(PALABRAS_CLAVE_EVENTOS, key=len, reverse=True):
         if palabra in texto_lower:
-            mejor_opcion = palabra.capitalize()
-            break
+            return palabra.capitalize()
 
-    if mejor_opcion:
-        return mejor_opcion
-
-    # 4. Si hay personas conocidas, usar como referencia
+    # Si hay personas detectadas
     if personas:
         return f"Reunión con {personas[0].capitalize()}"
 
     return "Evento sin nombre"
 
-
+# === Generación de descripción ===
 def generar_descripcion(texto):
     texto = texto.strip()
     if not texto:
         return "Descripción no disponible"
+    return texto.capitalize()
 
-    patron_fecha = r"\b(?:el\s+)?\d{1,2}\s+(?:de\s+)?(?:enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)\b"
-    patron_hora = r"\b(?:a\s+las\s+)?\d{1,2}(?::\d{2})?\s*(am|pm)?\b"
-
-    texto = re.sub(patron_fecha, '', texto, flags=re.IGNORECASE)
-    texto = re.sub(patron_hora, '', texto, flags=re.IGNORECASE)
-    texto = re.sub(r'\s+', ' ', texto).strip().capitalize()
-
-    return texto if texto else "Descripción no disponible"
-
+# === Día de la semana ===
 def detectar_dia_semana(texto: str, base_time: datetime) -> tuple:
     dias_semana_map = {
         "lunes": 0, "martes": 1, "miércoles": 2, "miercoles": 2,
@@ -91,6 +79,7 @@ def detectar_dia_semana(texto: str, base_time: datetime) -> tuple:
 
     return None, None
 
+# === Ajuste de hora AM/PM ===
 def ajustar_hora_por_periodo(hora, periodo):
     if periodo == "tarde" and hora < 12:
         return hora + 12
@@ -100,18 +89,18 @@ def ajustar_hora_por_periodo(hora, periodo):
         return 0
     return hora
 
+# === Extracción de rango de horas ===
 def extraer_rango_horas_natural(texto: str, base_date: datetime) -> tuple:
     texto = texto.lower()
     match = re.search(
-        r"(?:a\s*las\s*)?(\d{1,2})(?::(\d{2}))?\s*(am|pm|de la mañana|de la tarde|de la noche)?(?:\s*(hasta|a)\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm|de la mañana|de la tarde|de la noche)?)?",
+        r"(?:a\s*las\s*)?(\d{1,2})(?::(\d{2}))?\s*(am|pm|de la mañana|de la tarde|de la noche)?"
+        r"(?:\s*(hasta|a)\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm|de la mañana|de la tarde|de la noche)?)?",
         texto
     )
     if match:
         hi, mi, periodo_i, _, hf, mf, periodo_f = match.groups()
         hi = int(hi)
         mi = int(mi) if mi else 0
-        hf = int(hf) if hf else hi + 1
-        mf = int(mf) if mf else 0
 
         def parse_periodo(p):
             if p in ["pm", "de la tarde", "de la noche"]:
@@ -121,30 +110,22 @@ def extraer_rango_horas_natural(texto: str, base_date: datetime) -> tuple:
             return None
 
         hora_inicio = ajustar_hora_por_periodo(hi, parse_periodo(periodo_i))
-        hora_fin = ajustar_hora_por_periodo(hf, parse_periodo(periodo_f or periodo_i))
-
         inicio = base_date.replace(hour=hora_inicio, minute=mi, second=0, microsecond=0)
-        fin = base_date.replace(hour=hora_fin, minute=mf, second=0, microsecond=0)
 
-        if fin <= inicio:
-            fin += timedelta(days=1)
+        if hf:
+            hf = int(hf)
+            mf = int(mf) if mf else 0
+            hora_fin = ajustar_hora_por_periodo(hf, parse_periodo(periodo_f or periodo_i))
+            fin = base_date.replace(hour=hora_fin, minute=mf, second=0, microsecond=0)
+            if fin <= inicio:
+                fin += timedelta(days=1)
+            return inicio, fin
+        else:
+            return inicio, None
 
-        return inicio, fin
     return None, None
 
-def extraer_nombre_evento(texto, personas):
-    posibles = ["reunión", "capacitacion", "estudiante", "charla", "clase", "taller"]
-    for p in posibles:
-        if p in texto.lower():
-            return p.capitalize()
-    return personas[0] if personas else "Evento"
-
-def generar_descripcion(texto):
-    return texto.strip().capitalize()
-
-def es_evento_dia_completo(texto):
-    return bool(re.search(r"(todo el día|día completo|todo el dia)", texto.lower()))
-
+# === Función principal ===
 def extraer_datos(texto: str):
     doc = nlp(texto)
     personas = [ent.text for ent in doc.ents if ent.label_ == "PER"]
@@ -197,19 +178,15 @@ def extraer_datos(texto: str):
             raise ValueError("❌ No se pudo detectar ninguna fecha válida.")
 
         if dia_completo:
-            fecha_inicio_obj = fecha_inicio_obj.replace(
-                hour=0, minute=0, second=0, microsecond=0
-            )
-            fecha_fin_obj = fecha_inicio_obj.replace(
-                hour=23, minute=59, second=59, microsecond=0
-            )
+            fecha_inicio_obj = fecha_inicio_obj.replace(hour=0, minute=0, second=0, microsecond=0)
+            fecha_fin_obj = fecha_inicio_obj.replace(hour=23, minute=59, second=59, microsecond=0)
         else:
-            # Intenta extraer rango horario
-            rango = extraer_rango_horas_natural(texto, fecha_inicio_obj)
-            if rango:
-                fecha_inicio_obj, fecha_fin_obj = rango
+            inicio_fin = extraer_rango_horas_natural(texto, fecha_inicio_obj)
+            if inicio_fin:
+                fecha_inicio_obj, fecha_fin_obj = inicio_fin
+                if not fecha_fin_obj:
+                    fecha_fin_obj = fecha_inicio_obj + timedelta(hours=1)
             else:
-                # Intenta extraer solo hora de inicio
                 match_hora = re.search(
                     r"\b(?:a\s+las\s+)?(\d{1,2})(?::(\d{2}))?\s*(am|pm|de la mañana|de la tarde|de la noche)?",
                     texto.lower()
@@ -240,6 +217,7 @@ def extraer_datos(texto: str):
             "fechaFin": "Error",
             "horaFin": "Error",
         }
+
     return {
         "evento": evento,
         "descripcion": descripcion,
@@ -248,3 +226,4 @@ def extraer_datos(texto: str):
         "fechaFin": fecha_fin_obj.strftime("%Y-%m-%d") if fecha_fin_obj else "Vacío",
         "horaFin": fecha_fin_obj.strftime("%H:%M") if fecha_fin_obj else "Vacío",
     }
+    
