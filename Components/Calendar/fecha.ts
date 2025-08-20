@@ -1,35 +1,63 @@
 import { DateTime } from "luxon";
 
 /**
- * Normaliza una fecha a la hora correcta en America/Guayaquil.
- * @param fecha Cadena ISO o Date. Si la cadena no lleva offset, se interpreta según `zonaOrigen`.
- * @param zonaOrigen Zona de la que parte la fecha cuando no hay offset en la cadena. Por defecto "America/Guayaquil".
+ * Corrige la zona horaria de una fecha a America/Guayaquil
+ * @param fecha Fecha en formato ISO string o Date object
+ * @param zonaOrigen Zona horaria de origen (por defecto America/Guayaquil)
+ * @returns Date object corregido para la zona de Guayaquil
  */
 export function corregirFechaZonaHoraria(
-  fecha: string | Date,
-  zonaOrigen: string = "America/Guayaquil"
+    fecha: string | Date,
+    zonaOrigen: string = "America/Guayaquil"
 ): Date {
-  let dt: DateTime;
-
-  if (typeof fecha === "string") {
-
-    const tieneOffset = /([zZ]|[+-]\d{2}(:?\d{2})?)$/.test(fecha);
-
-    if (tieneOffset) {
-      
-      dt = DateTime.fromISO(fecha);
-    } else {
+    console.log(`🔧 Corrigiendo fecha: ${fecha}`);
     
-      dt = DateTime.fromISO(fecha, { zone: zonaOrigen });
-    }
+    let dt: DateTime;
 
-    if (!dt.isValid) {
-    
-      dt = DateTime.fromJSDate(new Date(fecha), { zone: zonaOrigen });
-    }
-  } else {
-    dt = DateTime.fromJSDate(fecha, { zone: zonaOrigen });
-  }
+    try {
+        if (typeof fecha === "string") {
+            // Verificar si la cadena tiene información de zona horaria
+            const tieneOffset = /([zZ]|[+-]\d{2}(:?\d{2})?)$/.test(fecha);
+            
+            if (tieneOffset) {
+                // La fecha ya tiene zona horaria definida
+                dt = DateTime.fromISO(fecha);
+                console.log(`📍 Fecha con zona horaria: ${dt.toString()}`);
+            } else {
+                // La fecha no tiene zona horaria, interpretarla como zona local
+                dt = DateTime.fromISO(fecha, { zone: zonaOrigen });
+                console.log(`🌍 Fecha interpretada en ${zonaOrigen}: ${dt.toString()}`);
+            }
 
-  return dt.setZone("America/Guayaquil").toJSDate();
+            // Si fromISO falla, intentar con el constructor Date nativo
+            if (!dt.isValid) {
+                console.log(`⚠️ fromISO falló, intentando con Date nativo`);
+                const jsDate = new Date(fecha);
+                dt = DateTime.fromJSDate(jsDate, { zone: zonaOrigen });
+            }
+        } else {
+            // Es un objeto Date
+            dt = DateTime.fromJSDate(fecha, { zone: zonaOrigen });
+            console.log(`📅 Date object procesado: ${dt.toString()}`);
+        }
+
+        // Validar que la conversión sea exitosa
+        if (!dt.isValid) {
+            console.error(`❌ Error parseando fecha: ${fecha}`, dt.invalidExplanation);
+            // Retornar fecha actual como fallback
+            return new Date();
+        }
+
+        // Convertir a zona horaria de Guayaquil manteniendo el momento exacto
+        const fechaGuayaquil = dt.setZone("America/Guayaquil");
+        const fechaFinal = fechaGuayaquil.toJSDate();
+        
+        console.log(`✅ Fecha final en Guayaquil: ${fechaFinal.toISOString()} (Local: ${fechaFinal.toLocaleString('es-ES', {timeZone: 'America/Guayaquil'})})`);
+        
+        return fechaFinal;
+
+    } catch (error) {
+        console.error(`❌ Error inesperado procesando fecha: ${fecha}`, error);
+        return new Date(); // Fallback
+    }
 }
